@@ -449,6 +449,7 @@ body{
 .navigation-auto{
     position: absolute;
     display: flex;
+    
     width: 100%;
     justify-content: center;
     margin-top: 460px;
@@ -473,6 +474,7 @@ body{
     background: #40d3dc;
 }
 #radio4:checked ~.navigation-auto .auto-btn4 {
+    
     background: #40d3dc;
 }
 .featured-products{

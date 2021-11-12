@@ -44,7 +44,7 @@ require_once ('./asssets/function/convertmoney.php');
                         if(!isset($_COOKIE['id']))
                         {
                             echo '<li class="nav-list_item">
-                            <span>Đăng kí</span>
+                            <span><a href="signup.php">Đăng kí</a></span>
                         </li>
                         <li class="nav-list_item">
                             <span><a href="login.php">Đăng nhập</a></span>
@@ -59,7 +59,7 @@ require_once ('./asssets/function/convertmoney.php');
                             <span>'.displayname().'</span>
                             <ul class="nav_user-menu">
                                 <li class="nav_user-item">
-                                    <a href="">Thông tin tài khoản</a>
+                                    <a href="getinfo.php">Thông tin tài khoản</a>
                                 </li>
                                 <li class="nav_user-item">
                                     <a href="">Đơn mua</a>
@@ -72,6 +72,9 @@ require_once ('./asssets/function/convertmoney.php');
                                     echo'<li class="nav_user-item">
                                     <a href="../../Admin">Admin</a>
                                 </li>';
+                                    echo'<li class="nav_user-item">
+                                        <a href="signup.php">Thêm Admin</a>
+                                    </li>';
                                 }
                                 echo '
                             </ul>

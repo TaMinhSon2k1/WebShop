@@ -278,6 +278,7 @@ if(isset($_GET['id']))
                             <a href="<?=$hrefff?>" style="width:100%; height:100%;"><button type="button" class="btn btn-primary" style="width:100%;height:100%; font-size:32px; border-radius:10px">Mua Ngay</button></a>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

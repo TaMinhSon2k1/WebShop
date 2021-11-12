@@ -6,54 +6,58 @@
     {
     $usernameAccount = $_POST["usernameAccount"];
     $passwordAccount = $_POST["passwordAccount"];
-    $idAccount = 0;
 
     $loginQuery = "SELECT * FROM account WHERE account.username = '$usernameAccount' AND account.password = '$passwordAccount'";
     $acc = executeSingleResult($loginQuery);
-    $array = [
-        "foo" => "bar",
-        "bar" => "foo",
-    ];
-    var_dump($acc);
     if (  $acc!= null) {
-        // while ($row = mysqli_fetch_assoc($getWhereData)) {
-        //     $idAccount = $row["id"];
-        //     //Nếu không có thông tin và ko là admin cần điền thông tin
-        //     if(!isHaveInfor($idAccount) && !$row["admin"]) {
-        //         $cookie_name = "id";
-        //         $cookie_value = $idAccount;
-        //         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-        //         mysqli_close($conn);
-        //         header( "Location: getinfor.html" );
-        //     } else {
-        //         //Trang chủ
-        //         mysqli_close($conn);
-        //         header( "Location: cart.php" );
-        //     }
-        // }index
-        // 0-1   !0
            $id = $acc["id"];
            $cookie_name = "id";
            $cookie_value = $id;
            setcookie($cookie_name, $cookie_value, time() + (60*5), '/');
-           if(!isHaveInfor($id) && $acc["admin"]==0) {
-                    //đi tới getinfo
-                    header( "Location: cart.php" );
-                } else {
-                    //đường tới giỏ hàng
-                    header( "Location: index.php" );
+           if(isset($_GET['id']))
+           {
+                $idproduct=$_GET['id'];
+                $sql='select * from cart';
+                $listcart=executeResult($sql);
+                $flag=false;
+                if($listcart!=null)
+                {
+                    foreach($listcart as $item)
+                    {
+                        if($item['id_pro']==$idproduct && $item['id_acc']==$id)
+                        {
+                            $numproduct=$item['numprod'];
+                            $sqlc='update cart set numprod ='.++$numproduct.' where id_acc ='.$item['id_acc'].' and id_pro ='.$item['id_pro'];
+                            $sqlc= execute($sqlc);
+                            $flag=true;
+                            header('Location: cart.php');
+                            break;
+                        }
+                    }
+                    if(!$flag)
+                    {
+                        $sqlc='insert into cart(id_acc,id_pro,numprod)
+                                        value("'.$id.'","'.$idproduct.'","1")';
+                            execute($sqlc);
+                            header('Location: cart.php');
+
+                    }
+                }
+                else
+                {
+                    $sqlc='insert into cart(id_acc,id_pro,numprod)
+                    value("'.$id.'","'.$idproduct.'","1")';
+                    execute($sqlc);
+                    header('Location: cart.php');
                 }
                 
-    } else {
-        // mysqli_close($conn);
-        // echo '<script language="javascript">';
-        // echo 'alert("Đăng nhập thất bại, hãy kiểm tra lại tài khoản hoặc mật khẩu");';
-        // echo 'window.location = "login.html"';
-        // echo '</script>';
-    }
-
-    //Hàm kiểm tra xem đã có thông tin chưa
-    
+           }
+           else
+           {
+               header('Location: index.php');
+           }
+        }
+                
     }
 ?>
 <!DOCTYPE html>
@@ -196,7 +200,7 @@ input[type='submit']:hover{
             </div>
             <input type="submit" value="Đăng nhập">
             <div class="signup_link">
-                Bạn chưa có tài khoản? <a href="signup.html">Đăng kí</a>
+                Bạn chưa có tài khoản? <a href="signup.php">Đăng kí</a>
             </div>
         </form>
     </div>

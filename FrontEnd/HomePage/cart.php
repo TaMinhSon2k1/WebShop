@@ -297,7 +297,7 @@ if (!empty($_POST)) {
 		  'action': 'delete'
 	  }, function(data)
 	  {
-		location.reload()
+		location.reload();
 	  })
     }   
     function increP(id, idacc, num) {
@@ -311,7 +311,7 @@ if (!empty($_POST)) {
 		  'action': 'incre'
 	  }, function(data)
 	  {
-		location.reload()
+		location.reload();
 	  })
     }   
     function decreP(id, idacc, num) {
@@ -325,7 +325,7 @@ if (!empty($_POST)) {
 		  'action': 'decre'
 	  }, function(data)
 	  {
-		location.reload()
+		location.reload();
 	  })
     } 
     function getCookie(cname) {
