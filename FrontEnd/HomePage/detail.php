@@ -20,6 +20,7 @@ if(isset($_GET['id']))
         $idcatg= $product['id_category'];
         $linkimg= $product['linkImg'];
         $price = $product['price'];
+	    $content = $product['content'];
     }
     $moneyprod=convertmoney($price);
 }
@@ -279,6 +280,13 @@ if(isset($_GET['id']))
                         </div>
                     </div>
                     
+                </div>
+		    <div style="border-style: dashed; border-color: #6495ED; border-radius:10px; margin-top: 40px; background-color: #F0F8FF;">
+                    <?php
+                        echo 
+                        '<h4 class="alert-heading" style="font-size:28px; padding:0 15px; margin-top: 3px">MÔ TẢ SẢN PHẨM</h4>
+                        <p style="font-size:20px; padding:0 15px; text-align: justify;">'.$content.'</p>';
+                    ?>
                 </div>
             </div>
         </div>
